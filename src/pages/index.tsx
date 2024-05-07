@@ -4,8 +4,8 @@ import { HomeView } from "../views";
 
 const Home: NextPage = (props) => {
   return (
-    <div>
-      <Head>
+    <div className="bg-gradient-to-r from-violet-500 to-blue-500">
+      <Head >
         <title>Solana Token Creator</title>
         <meta
           name="description"
