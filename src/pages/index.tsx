@@ -4,7 +4,7 @@ import { HomeView } from "../views";
 
 const Home: NextPage = (props) => {
   return (
-    <div className="bg-gradient-to-r from-violet-500 to-blue-500">
+    <div className="bg-gradient-to-r from-fuchsia-600 to-pink-600">
       <Head >
         <title>Solana Token Creator</title>
         <meta

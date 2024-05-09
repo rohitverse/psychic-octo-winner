@@ -300,7 +300,7 @@ export const HomeView: FC = ({ }) => {
     <div className="md:hero mx-auto w-full p-4">
       <div className="md:hero-content flex flex-col">
         <div className="mt-6 ">
-          <h1 className="text-center text-5xl md:pl-22py-2  font-bold text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 to-fuchsia-500 mb-4">
+          <h1 className="text-center text-5xl md:pl-22py-2  font-bold text-transparent bg-clip-text mb-4">
             Solana Token Creator
           </h1>
           <h2 className="text-xl md:w-[480px] flex flex-col m-auto ">
@@ -314,25 +314,25 @@ export const HomeView: FC = ({ }) => {
             </div>
             <label className=" flex font-bold">Token Name</label>
             <input
-              className="my-[1%] md:w-[480px] text-left input text-white pl-2 py-2 border-2 rounded-xl border-white"
+              className="my-[1%] md:w-[480px] text-left  text-white pl-2 py-2 border-2 rounded-xl border-white"
               type="text"
-              placeholder="Token Name"
+              placeholder="Solana"
               onChange={(e) => setTokenName(e.target.value)}
             />
 
             <label className=" flex font-bold">Symbol</label>
             <input
-              className="my-[1%] md:w-[480px] text-left input text-white pl-2 py-2 border-2 rounded-xl border-white"
+              className="my-[1%] md:w-[480px] text-left  text-white pl-2 py-2 border-2 rounded-xl border-white"
               type="text"
-              placeholder="Symbol"
+              placeholder="SOL"
               onChange={(e) => setSymbol(e.target.value)}
             />
 
             <label className=" flex font-bold">
-              Number of tokens to mint
+              TotalSupply
             </label>
             <input
-              className="my-[1%] md:w-[480px] text-left input text-white pl-2 py-2 border-2 rounded-xl border-white"
+              className="my-[1%] md:w-[480px] text-left  text-white pl-2 py-2 border-2 rounded-xl border-white"
               type="number"
               min="0"
               value={quantity}
@@ -343,9 +343,10 @@ export const HomeView: FC = ({ }) => {
               Number of decimals
             </label>
             <input
-              className="my-[1%] md:w-[480px] text-left input text-white pl-2 py-2 border-2 rounded-xl border-white"
+              className="my-[1%] md:w-[480px] text-left  text-white pl-2 py-2 border-2 rounded-xl border-white"
               type="number"
               min="0"
+              max="9"
               value={decimals}
               onChange={(e) => setDecimals(parseInt(e.target.value))}
             />
@@ -394,7 +395,7 @@ export const HomeView: FC = ({ }) => {
                     Metadata Url
                   </label>
                   <input
-                    className="my-[1%] md:w-[480px] text-left input text-white pl-2 py-2 border-2 rounded-xl border-white"
+                    className="my-[1%] md:w-[480px] text-left  text-white pl-2 py-2 border-2 rounded-xl border-white"
                     type="text"
                     placeholder="Metadata Url"
                     onChange={(e) => setMetadataURL(e.target.value)}
@@ -404,16 +405,16 @@ export const HomeView: FC = ({ }) => {
             )} */}
 
             {metadataMethod == "upload" && (
-              
+
               <div>
                 <div>
                   <label className=" mt-2 flex font-bold">
-                    Description
+                    Description ( optional )
                   </label>
                   <input
-                   className="my-[1%] md:w-[480px] input w-full text-left input text-white pl-2 py-2  border-2 rounded-xl border-white"
-                   type="text"
-                    placeholder="Description of the token/project"
+                    className="my-[1%] md:w-[480px]  w-full text-left  text-white pl-2 py-2  border-2 rounded-xl border-white"
+                    type="text"
+                    placeholder="Description of the token"
                     onChange={(e) => setTokenDescription(e.target.value)}
                   />
                 </div>
@@ -421,45 +422,53 @@ export const HomeView: FC = ({ }) => {
 
 
                 {/* -------------------UPLOAD IMAGE STARTS------------------------------- */}
+                <label className=" mt-2 flex font-bold">Image</label>
                 <div>
-                  <label className=" mt-2 flex font-bold">Image</label>
-                  <div className="rounded-lg border border-white py-2">
+                  <div className="w-full rounded-lg border ">
 
-                    <label
-                      className="text-white text-center  font-semibold hover:cursor-pointer"
-                    >
-                      <svg className="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
-                      </svg>
-                      {/* <div className="mt-4 flex text-sm leading-6 text-gray-600"></div> */}
-
-                      <input
-                        id="file"
-                        type="file"
-                        name="file"
-                        accept="image/*, video/*"
-                        onChange={handleFileChange}
-                        style={{ display: "none" }}
-                      />
-                      <h1>Upload a file</h1>
-                      <div className="pl-2"py-2 >or drag and drop</div>
-                      <div className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 100 kb</div>
-                    </label>
+                    {Imagefile ? (
+                        <label
+                          className="text-white text-center font-semibold hover:cursor-pointer"
+                        >
+                          <input
+                            id="file"
+                            type="file"
+                            name="file"
+                            accept="image/*, video/*"
+                            onChange={handleFileChange}
+                            style={{ display: "none" }}
+                          />
+                          <img src={Imagefile} alt="file-preview" />
+                        </label>
+                    ) : (
+                      <label className=" mt-2 flex font-bold text-center">
+                        <div className="">
+                          <label
+                            className="text-white text-center  font-semibold hover:cursor-pointer"
+                          >
+                            <svg className="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+                            </svg>
+                            <input
+                              id="file"
+                              type="file"
+                              name="file"
+                              accept="image/*, video/*"
+                              onChange={handleFileChange}
+                              style={{ display: "none" }}
+                            />
+                            <h1>Upload a file</h1>
+                            <div className="pl-2 py-2">or drag and drop</div>
+                            <div className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 100 kb</div>
+                          </label>
+                        </div>
+                      </label>
+                    )}
                   </div>
-                </div>
-                <div>
-                  {Imagefile && (
-                    <div>
-                      <img src={Imagefile} alt="file-preview" className="rounded-lg border-white" />
-                    </div>
-                  )}
-                </div>
-                {fileName != "" && <div className="mt-2">{fileName}</div>}
+             </div>
+                {/* -------------------UPLOAD IMAGE ENDS ----------------------- */}
               </div>
-              // {/* -------------------UPLOAD IMAGE ENDS ----------------------- */}
             )}
-
-
             <div className="mt-5 mb-2 uppercase  font-bold text-2xl">
               Authority
             </div>
@@ -481,39 +490,37 @@ export const HomeView: FC = ({ }) => {
                 onChange={(e) => setDisableMintIsChecked(!isChecked)}
               />
             </div>
-
-          <div className="flex justify-center">
-            {iscreating ? (
-              <button className="font-bold px-4 py-2 bg-[#445566] rounded-xl hover:scale-110">
-                <svg
-                  role="status"
-                  className="inline mr-3 w-4 h-4 text-white animate-spin"
-                  viewBox="0 0 100 101"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+            <div className="flex justify-center">
+              {iscreating ? (
+                <button className="font-bold px-4 py-2 bg-[#445566] rounded-xl hover:scale-110">
+                  <svg
+                    role="status"
+                    className="inline mr-3 w-4 h-4 text-white animate-spin"
+                    viewBox="0 0 100 101"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                      fill="#E5E7EB"
+                    />
+                    <path
+                      d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  Creating...
+                </button>
+              ) : (
+                <button
+                  className="font-bold px-4 py-2 bg-[#445566] rounded-xl hover:scale-110"
+                  onClick={create}
                 >
-                  <path
-                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                    fill="#E5E7EB"
-                    />
-                  <path
-                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                    fill="currentColor"
-                    />
-                </svg>
-                Creating...
-              </button>
-            ) : (
-              <button
-              className="font-bold px-4 py-2 bg-[#445566] rounded-xl hover:scale-110"
-              onClick={create}
-              >
-                Create Token
-              </button>
-            )}
-          </div>
-
+                  Create Token
+                </button>
+              )}
             </div>
+          </div>
           <div className="flex justify-center">
             {signature !== "" && (
               <div className="mt-2">
@@ -528,7 +535,6 @@ export const HomeView: FC = ({ }) => {
               </div>
             )}
           </div>
-
           <div className="flex justify-center">
             {error != "" && <div className="mt-2">❌ Ohoh.. {error}</div>}
           </div>
